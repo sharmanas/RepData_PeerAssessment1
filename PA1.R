@@ -10,7 +10,8 @@ hist(steps.per.day, main="Histogram of total steps per day", xlab="Total steps p
 ## Mean and Median of total number of steps taken per day
 mean.before.imputation <- mean(steps.per.day, na.rm=TRUE)
 median.before.imputation <- median(steps.per.day, na.rm=TRUE)
-
+mean.before.imputation
+median.before.imputation
 ## Average daily activity pattern
 steps.per.interval <- aggregate(steps ~ interval, data = activity.data,
                                 FUN = mean)
@@ -37,12 +38,15 @@ for (i in 1:nrow(new.activity.data)) {
 }
 head(new.activity.data)
 sum(is.na(new.activity.data))
+## Histogram of total number of steps taken each day
 steps.each.day <- tapply(new.activity.data$steps, new.activity.data$date, sum)
 hist(steps.each.day, main="Histogram of total steps taken each day", xlab="Total steps taken each day",
      breaks=10)
 mean.after.imputation <- mean(steps.each.day)
 median.after.imputation <- median(steps.each.day)
-## COmparing estimates before and after imputation
+mean.after.imputation
+median.after.imputation
+## Comparing estimates before and after imputation
 estimates <- data.frame(mean=c(mean.before.imputation, mean.after.imputation), 
                         median=c(median.before.imputation, median.after.imputation))
 rownames(estimates) <- c("before", "after")
