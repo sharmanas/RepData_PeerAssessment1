@@ -19,10 +19,11 @@ Total number of steps can be calculated by:
 steps.per.day <- tapply(activity.data$steps, activity.data$date, sum, na.rm=TRUE)
 ```
 Histogram of total number of steps each day can be plotted as:
-```{r}
+```{r Histogram_I}
 hist(steps.per.day, main="Histogram of total steps per day", xlab="Total steps per day", breaks=10)
 ```
-Mean and Median of the total number of steps can be calcutaed as:
+  
+Mean and Median of the total number of steps can be calculated as:
 ```{r}
 mean.before.imputation <- mean(steps.per.day, na.rm=TRUE)
 median.before.imputation <- median(steps.per.day, na.rm=TRUE)
@@ -33,7 +34,7 @@ median.before.imputation
 ## What is the average daily activity pattern?
 To see the average daily pattern, we will first calculate average number of steps taken,
 in each interval, followed by the time-series plot:
-```{r}
+```{r Time_Series_Plot}
 steps.per.interval <- aggregate(steps ~ interval, data = activity.data,
                                 FUN = mean)
 plot(steps ~ interval, data = steps.per.interval, type = "l",
@@ -41,6 +42,7 @@ plot(steps ~ interval, data = steps.per.interval, type = "l",
      xlab = "5-minute interval",
      ylab = "Average number of steps taken")
 ```
+  
 The 5-minute interval containing maximum number of steps can be identified as:
 ```{r}
 steps.per.interval$interval[steps.per.interval$steps==max(steps.per.interval$steps)]
@@ -82,11 +84,12 @@ head(new.activity.data)
 sum(is.na(new.activity.data))
 ```
 Histogram of total number of steps each day can be plotted as:
-```{r}
+```{r Histogram_II}
 steps.each.day <- tapply(new.activity.data$steps, new.activity.data$date, sum)
 hist(steps.each.day, main="Histogram of total steps taken each day", xlab="Total steps taken each day", breaks=10)
 ```
-Mean and Median of the total number of steps can be calcutaed as:
+  
+Mean and Median of the total number of steps can be calculated as:
 ```{r}
 mean.after.imputation <- mean(steps.each.day)
 median.after.imputation <- median(steps.each.day)
@@ -117,7 +120,7 @@ new.activity.data$indicator <- as.factor(new.activity.data$indicator)
 table(new.activity.data$indicator)
 ```
 Finally, let's make a panel plot to visualize if there is, at all, any difference in activity patterns between weekdays and weekends.
-```{r}
+```{r Panel_Plot}
 avg.steps <- aggregate(steps ~ interval + indicator, data=new.activity.data, mean)
 library(lattice)
 xyplot(avg.steps$steps ~ avg.steps$interval | avg.steps$indicator, layout=c(1,2), 

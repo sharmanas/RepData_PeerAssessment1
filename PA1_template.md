@@ -21,8 +21,9 @@ Histogram of total number of steps each day can be plotted as:
 hist(steps.per.day, main="Histogram of total steps per day", xlab="Total steps per day", breaks=10)
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
-Mean and Median of the total number of steps can be calcutaed as:
+![](PA1_template_files/figure-html/Histogram_I-1.png) 
+  
+Mean and Median of the total number of steps can be calculated as:
 
 ```r
 mean.before.imputation <- mean(steps.per.day, na.rm=TRUE)
@@ -55,7 +56,8 @@ plot(steps ~ interval, data = steps.per.interval, type = "l",
      ylab = "Average number of steps taken")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
+![](PA1_template_files/figure-html/Time_Series_Plot-1.png) 
+  
 The 5-minute interval containing maximum number of steps can be identified as:
 
 ```r
@@ -162,8 +164,9 @@ steps.each.day <- tapply(new.activity.data$steps, new.activity.data$date, sum)
 hist(steps.each.day, main="Histogram of total steps taken each day", xlab="Total steps taken each day", breaks=10)
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-13-1.png) 
-Mean and Median of the total number of steps can be calcutaed as:
+![](PA1_template_files/figure-html/Histogram_II-1.png) 
+  
+Mean and Median of the total number of steps can be calculated as:
 
 ```r
 mean.after.imputation <- mean(steps.each.day)
@@ -229,4 +232,4 @@ xyplot(avg.steps$steps ~ avg.steps$interval | avg.steps$indicator, layout=c(1,2)
        xlab="interval", ylab="average number of steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-17-1.png) 
+![](PA1_template_files/figure-html/Panel_Plot-1.png) 
